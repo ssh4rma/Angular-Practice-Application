@@ -1,0 +1,18 @@
+<div [formGroup]="myForm" id="form-div">
+  <input formControlName="Name" />
+  <input formControlName="Age" />
+</div>
+
+<div *ngIf="myForm.get('Name')?.invalid && myForm.get('Name')?.touched">
+  <small *ngIf="myForm.get('Name')?.hasError('required')"
+    >Name is required</small
+  >
+  <small *ngIf="myForm.get('Name')?.hasError('minlength')"
+    >Name is too short</small
+  >
+</div>
+
+<app-c2
+  [childName]="myForm.get('Name')?.value ?? null"
+  [childAge]="myForm.get('Age')?.value ?? null"
+/>
